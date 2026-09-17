@@ -1,0 +1,114 @@
+{
+  "nome": "Imagem do convidado para thumb — Anima Podcast (Template 2)",
+  "versao": "2026-09-17",
+  "uso": "Preencher o bloco 'convidado', montar o prompt final substituindo as {variaveis} e enviar junto com a FOTO-ORIGEM do convidado (image-to-image). Gerar 1 imagem por convidado; em duplas, 1 imagem separada para cada pessoa.",
+
+  "convidado": {
+    "episodio": "#316",
+    "nome": "Júlia de Castro",
+    "genero": "mulher",
+    "tipo": "leigo",
+    "roupa": "manter a roupa da foto-origem",
+    "pose": "braços relaxados ao lado do corpo, leve inclinação do ombro",
+    "foto_origem": "thumbnail do episódio no YouTube (i.ytimg.com/vi/<id>/maxresdefault.jpg) ou frame nítido do vídeo"
+  },
+
+  "variaveis": {
+    "genero": ["homem", "mulher"],
+    "tipo": {
+      "leigo": "roupa da foto-origem, sóbria",
+      "padre": "camisa clerical preta com colarinho romano branco (Pe.)",
+      "frei": "hábito religioso da ordem, como na foto-origem",
+      "diacono": "camisa social sóbria ou clerical, como na foto-origem"
+    },
+    "poses_sugeridas": [
+      "braços cruzados na altura da cintura",
+      "mãos nos bolsos",
+      "uma mão no queixo, a outra apoiando o cotovelo",
+      "braços relaxados ao lado do corpo",
+      "leve inclinação de corpo, mãos juntas à frente em repouso"
+    ],
+    "regra_poses": "Não repetir a mesma pose entre convidados do mesmo lote; em duplas, cada pessoa com pose diferente."
+  },
+
+  "prompt": {
+    "template": "Recrie fielmente a pessoa da imagem anexada ({nome}), mantendo identidade, rosto, cabelo, idade e traços exatamente iguais. Fotografia de estúdio em PRETO E BRANCO de alto contraste, fundo PRETO liso. Pessoa EM PÉ, de frente para a câmera, expressão simpática e natural, sorriso leve. Pose: {pose}. Roupa: {roupa}. Plano médio-longo com enquadramento ABERTO mostrando da cabeça até a região dos QUADRIS e o início das coxas, com bastante corpo visível ABAIXO DA LINHA DA CINTURA; NÃO terminar o quadro na cintura nem no peito. Cabeça no terço superior com margem acima (cabeça inteira, sem corte). Pessoa centralizada, sem objetos cortando o corpo. MÃOS BEM FORMADAS, anatomia correta, cinco dedos em cada mão. Iluminação de estúdio suave com recorte de luz nas bordas, pele natural, nitidez alta, aparência fotográfica real.",
+    "negativo": "colorido, sépia, fundo claro, fundo com cenário, microfone na frente do corpo, texto, logotipo, marca d'água, close no rosto, corte no peito, corte na cintura, cabeça cortada, mãos deformadas, dedos extras, dedos fundidos, crianças, outras pessoas, aparência de desenho ou 3D, pele plástica",
+    "observacoes": [
+      "Sempre anexar a foto-origem: a identidade vem dela.",
+      "Se as mãos saírem com defeito, regerar com 'braços cruzados na altura da cintura'.",
+      "Se o quadro terminar no peito ou na cintura, regerar reforçando o trecho 'ABAIXO DA LINHA DA CINTURA'.",
+      "Não escrever o nome da pessoa na imagem."
+    ]
+  },
+
+  "geracao": {
+    "proporcao": "2:3",
+    "resolucao_minima": "1024x1536",
+    "variacoes": 4,
+    "opcoes": {
+      "grok_imagine_web": {
+        "url": "https://grok.com/imagine",
+        "modo": "Imagine (não o chat)",
+        "qualidade": "Qualidade",
+        "anexo": "foto-origem no input[type=file]"
+      },
+      "replicate_nano_banana_pro": {
+        "model": "google/nano-banana-pro",
+        "input": {
+          "prompt": "<prompt.template preenchido>",
+          "image_input": ["<URL pública da foto-origem>"],
+          "aspect_ratio": "2:3",
+          "resolution": "2K",
+          "output_format": "png"
+        },
+        "nota": "sem negative_prompt: incluir as restrições no próprio prompt"
+      },
+      "replicate_grok_imagine": {
+        "model": "xai/grok-imagine-image-quality",
+        "input": {
+          "prompt": "<prompt.template preenchido>",
+          "image": "<URL pública da foto-origem>",
+          "aspect_ratio": "2:3",
+          "resolution": "2k"
+        }
+      }
+    }
+  },
+
+  "pos_processamento": {
+    "ferramentas": "py -3 com Pillow + rembg",
+    "passos": [
+      "Remover fundo com rembg (modelo u2net_human_seg); manter só componentes com área >= 12000 px",
+      "Converter para P&B (grayscale mantendo o alpha) com contraste 1.12",
+      "Aparar a transparência na bounding-box do alpha (topo do arquivo = topo do cabelo)",
+      "NÃO clarear nem desfocar a base; manter a cor natural da roupa",
+      "Salvar como PNG transparente: g<num>.png (ex.: g316.png)"
+    ]
+  },
+
+  "montagem_canva": {
+    "template": "Template 2 — 1920x1080, borda verde, casal fixo à esquerda (asset MAHT4maaxjA)",
+    "lado": "direita",
+    "altura_cabeca_alvo_px": "305-320 (igual à cabeça do casal)",
+    "topo_da_cabeca_y": 210,
+    "centro_x_do_rosto": 1555,
+    "base": "o elemento termina em y=1080 (corte seco na borda inferior)",
+    "regras": [
+      "Rosto nunca cortado; mulheres um pouco menores que homens",
+      "Em duplas: o primeiro nome em 'com X e Y' fica na frente e com mais destaque",
+      "Textos (título, 'com ...', selo 'Episódio #NNN') sempre em primeiro plano (layer front)",
+      "Padre sempre como 'Pe.'"
+    ]
+  },
+
+  "checklist_entrega": [
+    "Identidade fiel à foto-origem",
+    "P&B, fundo preto, recorte limpo",
+    "Enquadramento abaixo da cintura, cabeça inteira",
+    "Mãos bem formadas",
+    "Pose diferente dos outros convidados do lote",
+    "Cabeça do mesmo tamanho e na mesma altura da cabeça do casal",
+    "Texto legível e na frente da foto"
+  ]
+}
