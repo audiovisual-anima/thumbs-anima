@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de preço — impressão 3D</title>
+<style>
+:root{
+  --verde:#4CB752; --tinta:#0d0d0f; --caixa:#151519;
+  --linha:rgba(255,255,255,.12); --suave:rgba(255,255,255,.62);
+  --alerta:#ff9f43;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--tinta);color:#fff;
+  font:400 16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{padding:56px 0 32px;border-bottom:1px solid var(--linha)}
+.tag{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--verde);border:1px solid rgba(76,183,82,.45);border-radius:99px;padding:6px 14px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:18px 0 10px;font-weight:700;letter-spacing:-.02em}
+.sub{color:var(--suave);max-width:68ch;font-size:16.5px}
+h2{font-size:clamp(20px,3vw,27px);margin:48px 0 4px;letter-spacing:-.01em}
+h2 .n{color:var(--verde);font-size:14px;letter-spacing:.14em;display:block;margin-bottom:4px;font-weight:600}
+p{color:rgba(255,255,255,.80)}
+.dica{color:var(--suave);font-size:14px;margin:2px 0 18px}
+
+.campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:18px 0}
+label{display:block;font-size:12.5px;color:var(--suave);margin-bottom:5px;letter-spacing:.02em}
+label b{color:rgba(255,255,255,.9);font-weight:600}
+.in{position:relative}
+.in input{width:100%;background:#101014;border:1px solid var(--linha);border-radius:10px;
+  color:#fff;padding:11px 42px 11px 13px;font:600 16px/1.2 inherit;
+  font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.in input:focus{outline:none;border-color:rgba(76,183,82,.75);box-shadow:0 0 0 3px rgba(76,183,82,.14)}
+.in input::-webkit-outer-spin-button,.in input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.in .un{position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  font-size:12px;color:rgba(255,255,255,.4);pointer-events:none}
+.in input.texto{font-weight:500}
+
+.painel{background:var(--caixa);border:1px solid var(--linha);border-radius:16px;padding:24px;margin:22px 0}
+.painel.destaque{border-color:rgba(76,183,82,.4)}
+
+.resumo{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:4px 0 26px}
+.big{background:#101014;border:1px solid var(--linha);border-radius:14px;padding:20px}
+.big.verde{border-color:rgba(76,183,82,.5);background:rgba(76,183,82,.08)}
+.big .rot{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.big .v{font-size:clamp(26px,4.2vw,36px);font-weight:700;line-height:1.15;margin-top:6px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.big.verde .v{color:var(--verde)}
+.big .ob{font-size:13px;color:var(--suave);margin-top:4px}
+
+.barra{display:flex;height:14px;border-radius:99px;overflow:hidden;margin:6px 0 16px;background:#101014}
+.barra i{display:block;height:100%}
+.leg{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13.5px;color:var(--suave);margin-bottom:6px}
+.leg span{display:inline-flex;align-items:center;gap:7px}
+.leg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+th,td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--linha)}
+th{color:var(--suave);font-weight:500;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.total td{border-top:1px solid var(--linha);font-weight:700;border-bottom:none}
+.up{color:var(--verde);font-weight:600}
+.baixo{color:var(--alerta);font-weight:600}
+td input{width:76px;background:#101014;border:1px solid var(--linha);border-radius:7px;color:#fff;
+  padding:6px 8px;font:600 14px inherit;text-align:right;font-variant-numeric:tabular-nums}
+td input:focus{outline:none;border-color:rgba(76,183,82,.7)}
+
+.bt{display:inline-flex;align-items:center;gap:8px;background:var(--verde);color:#0d0d0f;border:none;
+  text-decoration:none;font:700 14px inherit;padding:11px 20px;border-radius:99px;cursor:pointer;margin:4px 8px 4px 0}
+.bt.ghost{background:transparent;color:var(--verde);border:1px solid rgba(76,183,82,.45)}
+.bt.mini{padding:6px 13px;font-size:13px}
+.bt:hover{filter:brightness(1.08)}
+
+.vazio{color:var(--suave);font-size:14.5px;padding:18px 0}
+.aviso{background:rgba(76,183,82,.07);border:1px solid rgba(76,183,82,.3);
+  border-radius:12px;padding:18px 20px;margin:24px 0;font-size:14.5px;color:rgba(255,255,255,.82)}
+.aviso strong{color:var(--verde)}
+footer{margin:64px 0 48px;padding-top:24px;border-top:1px solid var(--linha);
+  color:rgba(255,255,255,.45);font-size:13.5px}
+footer a{color:var(--verde)}
+@media(max-width:640px){
+  header{padding:36px 0 24px}
+  .painel{padding:18px}
+  table{font-size:13.5px} th,td{padding:9px 6px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="tag">Anima Podcast · impressão 3D</span>
+  <h1>Quanto custa cada peça</h1>
+  <p class="sub">Calcula o custo real e o preço de venda de qualquer peça impressa em 3D.
+  Preencha o que o fatiador te deu — gramas, tempo e quantas peças cabem na mesa — e o
+  resto sai pronto. Tudo fica salvo neste navegador.</p>
+</header>
+
+<h2><span class="n">PASSO 1</span>Suas premissas</h2>
+<p class="dica">Define uma vez e vale para todas as peças. Os valores que vêm preenchidos são
+médias de mercado de setembro de 2026 — troque pelos seus.</p>
+
+<div class="painel">
+  <div class="campos">
+    <div><label for="p_fil"><b>Filamento</b> — preço do rolo por quilo</label>
+      <div class="in"><input id="p_fil" type="number" step="1" min="0"><span class="un">R$/kg</span></div></div>
+    <div><label for="p_kwh"><b>Energia</b> — sua tarifa com impostos</label>
+      <div class="in"><input id="p_kwh" type="number" step="0.01" min="0"><span class="un">R$/kWh</span></div></div>
+    <div><label for="p_w"><b>Potência</b> da impressora imprimindo</label>
+      <div class="in"><input id="p_w" type="number" step="5" min="0"><span class="un">W</span></div></div>
+    <div><label for="p_maq"><b>Preço da impressora</b></label>
+      <div class="in"><input id="p_maq" type="number" step="50" min="0"><span class="un">R$</span></div></div>
+    <div><label for="p_vida"><b>Vida útil</b> — horas de impressão até trocar</label>
+      <div class="in"><input id="p_vida" type="number" step="100" min="1"><span class="un">h</span></div></div>
+    <div><label for="p_manut"><b>Manutenção</b> — bico, correia, chapa</label>
+      <div class="in"><input id="p_manut" type="number" step="0.1" min="0"><span class="un">R$/h</span></div></div>
+    <div><label for="p_mo"><b>Sua hora</b> — quanto vale seu tempo</label>
+      <div class="in"><input id="p_mo" type="number" step="5" min="0"><span class="un">R$/h</span></div></div>
+    <div><label for="p_emb"><b>Embalagem</b> por peça</label>
+      <div class="in"><input id="p_emb" type="number" step="0.5" min="0"><span class="un">R$</span></div></div>
+    <div><label for="p_falha"><b>Taxa de falha</b> — impressões perdidas</label>
+      <div class="in"><input id="p_falha" type="number" step="1" min="0" max="90"><span class="un">%</span></div></div>
+    <div><label for="p_markup"><b>Markup</b> — multiplicador sobre o custo</label>
+      <div class="in"><input id="p_markup" type="number" step="0.1" min="1"><span class="un">×</span></div></div>
+  </div>
+  <p class="dica" id="maqhora" style="margin:6px 0 0"></p>
+</div>
+
+<h2><span class="n">PASSO 2</span>A peça</h2>
+<p class="dica">Gramas e tempo saem do fatiador. Se você imprime várias de uma vez, informe o
+tempo da <strong>mesa inteira</strong> e quantas peças vão nela — é o que derruba o custo.</p>
+
+<div class="painel destaque">
+  <div class="campos">
+    <div><label for="q_nome"><b>Nome da peça</b></label>
+      <div class="in"><input id="q_nome" type="text" class="texto" placeholder="ex.: Porta-copos Anima"></div></div>
+    <div><label for="q_g"><b>Material</b> por peça</label>
+      <div class="in"><input id="q_g" type="number" step="0.1" min="0"><span class="un">g</span></div></div>
+    <div><label for="q_t"><b>Tempo da mesa inteira</b></label>
+      <div class="in"><input id="q_t" type="number" step="1" min="0"><span class="un">min</span></div></div>
+    <div><label for="q_n"><b>Peças na mesa</b></label>
+      <div class="in"><input id="q_n" type="number" step="1" min="1"><span class="un">un</span></div></div>
+    <div><label for="q_setup"><b>Preparo</b> por mesa — fatiar, iniciar, limpar</label>
+      <div class="in"><input id="q_setup" type="number" step="1" min="0"><span class="un">min</span></div></div>
+    <div><label for="q_acab"><b>Acabamento</b> por peça — tirar rebarba, embalar</label>
+      <div class="in"><input id="q_acab" type="number" step="0.5" min="0"><span class="un">min</span></div></div>
+  </div>
+  <button class="bt" id="bt_salvar">Salvar esta peça</button>
+  <button class="bt ghost" id="bt_exemplo">Carregar o porta-copos Anima</button>
+  <button class="bt ghost" id="bt_limpar">Limpar campos</button>
+</div>
+
+<h2><span class="n">PASSO 3</span>O resultado</h2>
+
+<div class="resumo">
+  <div class="big"><div class="rot">Custo real da peça</div>
+    <div class="v" id="r_custo">—</div><div class="ob" id="r_custo_ob"></div></div>
+  <div class="big verde"><div class="rot">Preço sugerido</div>
+    <div class="v" id="r_preco">—</div><div class="ob" id="r_preco_ob"></div></div>
+  <div class="big"><div class="rot">Lucro por peça</div>
+    <div class="v" id="r_lucro">—</div><div class="ob" id="r_lucro_ob"></div></div>
+</div>
+
+<div class="painel">
+  <h3 style="margin:0 0 10px;font-size:16px">Para onde vai o seu dinheiro</h3>
+  <div class="barra" id="r_barra"></div>
+  <div class="leg" id="r_leg"></div>
+  <table>
+    <thead><tr><th>Item</th><th class="n">Por peça</th><th class="n">Fatia</th></tr></thead>
+    <tbody id="r_tab"></tbody>
+  </table>
+</div>
+
+<div class="painel">
+  <h3 style="margin:0 0 4px;font-size:16px">Quanto sobra em cada canal</h3>
+  <p class="dica" style="margin-bottom:6px">A comissão é editável. O preço mínimo é o que
+  você precisa cobrar naquele canal para fechar com a margem indicada.</p>
+  <table>
+    <thead><tr>
+      <th>Canal</th><th class="n">Comissão</th><th class="n">Líquido a <span id="c_preco">—</span></th>
+      <th class="n">Margem</th><th class="n">Preço p/ 50%</th><th class="n">Preço p/ 60%</th>
+    </tr></thead>
+    <tbody id="c_tab"></tbody>
+  </table>
+</div>
+
+<div class="painel">
+  <h3 style="margin:0 0 4px;font-size:16px">Testar um preço</h3>
+  <p class="dica" style="margin-bottom:12px">Já tem um preço em mente? Veja se ele fecha.</p>
+  <div class="campos" style="margin-top:0">
+    <div><label for="t_preco"><b>Preço de venda</b></label>
+      <div class="in"><input id="t_preco" type="number" step="1" min="0"><span class="un">R$</span></div></div>
+    <div><label for="t_taxa"><b>Comissão do canal</b></label>
+      <div class="in"><input id="t_taxa" type="number" step="1" min="0" max="90"><span class="un">%</span></div></div>
+  </div>
+  <p id="t_saida" style="margin:6px 0 0;font-size:15.5px"></p>
+</div>
+
+<h2>Suas peças</h2>
+<p class="dica">Salvas neste navegador. Clique numa linha para carregar os valores de volta.</p>
+<div class="painel">
+  <table>
+    <thead><tr>
+      <th>Peça</th><th class="n">g</th><th class="n">min/un</th>
+      <th class="n">Custo</th><th class="n">Preço</th><th class="n">Lucro</th><th></th>
+    </tr></thead>
+    <tbody id="lista"></tbody>
+  </table>
+  <div class="vazio" id="vazio">Nenhuma peça salva ainda. Preencha o passo 2 e clique em “Salvar esta peça”.</div>
+</div>
+
+<div class="aviso">
+  <strong>Duas coisas que mudam tudo.</strong> A primeira é a <strong>sua hora</strong>: em peças
+  pequenas ela costuma pesar mais que o filamento, e é o número que a maioria esquece de cobrar.
+  A segunda é <strong>quantas peças cabem na mesa</strong> — o preparo é o mesmo para 1 ou para 5,
+  então encher a mesa dilui o seu tempo e derruba o custo sem você mexer em mais nada.
+</div>
+
+<footer>
+  Anima Podcast · modelo de custo = material + energia + hora de máquina + mão de obra +
+  embalagem, dividido por (1 − taxa de falha). Os valores iniciais são médias de mercado de
+  setembro de 2026 e servem só como ponto de partida.<br>
+  <a href="../porta-copos/">← Porta-copos do logo</a>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var CHAVE = 'anima3d.v1';
+
+  var PADRAO = {
+    p_fil:110, p_kwh:0.95, p_w:95, p_maq:3290, p_vida:2500, p_manut:0.80,
+    p_mo:35, p_emb:2, p_falha:8, p_markup:2.5,
+    q_nome:'', q_g:'', q_t:'', q_n:1, q_setup:5, q_acab:2,
+    t_preco:29, t_taxa:0
+  };
+  var EXEMPLO = {
+    q_nome:'Porta-copos Anima', q_g:22.48, q_t:176.3, q_n:5, q_setup:10, q_acab:2
+  };
+  var CANAIS = [
+    {nome:'Venda direta (Pix)', taxa:0},
+    {nome:'Mercado Livre', taxa:17},
+    {nome:'Elo7', taxa:18},
+    {nome:'Shopee', taxa:20}
+  ];
+  var CORES = ['#4CB752','#8ad18e','#2f7a34','#c9a227','#6b6b78'];
+
+  var campos = Object.keys(PADRAO);
+  var el = {};
+  campos.forEach(function(k){ el[k] = document.getElementById(k); });
+
+  // ---------- persistência (nunca deve quebrar a página) ----------
+  function ler(){
+    try { return JSON.parse(localStorage.getItem(CHAVE)) || {}; }
+    catch(e){ return {}; }
+  }
+  function gravar(obj){
+    try { localStorage.setItem(CHAVE, JSON.stringify(obj)); } catch(e){}
+  }
+  var estado = ler();
+  var pecas = Array.isArray(estado.pecas) ? estado.pecas : [];
+
+  function salvarTudo(){
+    var v = {pecas:pecas};
+    campos.forEach(function(k){ v[k] = el[k].value; });
+    gravar(v);
+  }
+
+  function num(k){ var v = parseFloat(el[k].value); return isFinite(v) ? v : 0; }
+  function brl(v){
+    return 'R$ ' + (isFinite(v) ? v : 0).toLocaleString('pt-BR',
+      {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+  function pct(v){ return (isFinite(v) ? v*100 : 0).toFixed(0) + '%'; }
+
+  // ---------- o cálculo ----------
+  function calcular(){
+    var nMesa   = Math.max(1, num('q_n'));
+    var horaPc  = (num('q_t') / nMesa) / 60;            // horas de máquina por peça
+    var maqHora = (num('p_vida') > 0 ? num('p_maq')/num('p_vida') : 0) + num('p_manut');
+    var moMin   = num('q_setup')/nMesa + num('q_acab'); // minutos de gente por peça
+
+    var itens = [
+      {nome:'Material',        v: num('q_g') * num('p_fil') / 1000},
+      {nome:'Energia',         v: num('p_w')/1000 * horaPc * num('p_kwh')},
+      {nome:'Hora de máquina', v: horaPc * maqHora},
+      {nome:'Mão de obra',     v: moMin/60 * num('p_mo')},
+      {nome:'Embalagem',       v: num('p_emb')}
+    ];
+    var direto = itens.reduce(function(s,i){ return s + i.v; }, 0);
+    var falha  = Math.min(0.9, Math.max(0, num('p_falha')/100));
+    var real   = direto / (1 - falha);
+    var preco  = real * Math.max(1, num('p_markup'));
+
+    return {itens:itens, direto:direto, real:real, preco:preco, falha:falha,
+            horaPc:horaPc, maqHora:maqHora, moMin:moMin, nMesa:nMesa};
+  }
+
+  // ---------- desenho ----------
+  function render(){
+    var c = calcular();
+    var temPeca = num('q_g') > 0 || num('q_t') > 0;
+
+    document.getElementById('maqhora').textContent =
+      'Sua hora de máquina fica em ' + brl(c.maqHora) + '/h — ' +
+      brl(num('p_vida') > 0 ? num('p_maq')/num('p_vida') : 0) + ' de depreciação + ' +
+      brl(num('p_manut')) + ' de manutenção.';
+
+    document.getElementById('r_custo').textContent = temPeca ? brl(c.real) : '—';
+    document.getElementById('r_custo_ob').textContent = temPeca
+      ? brl(c.direto) + ' de custo direto + ' + pct(c.falha) + ' de falhas' : '';
+    document.getElementById('r_preco').textContent = temPeca ? brl(c.preco) : '—';
+    document.getElementById('r_preco_ob').textContent = temPeca
+      ? 'markup de ' + num('p_markup').toLocaleString('pt-BR') + '× sobre o custo' : '';
+    document.getElementById('r_lucro').textContent = temPeca ? brl(c.preco - c.real) : '—';
+    document.getElementById('r_lucro_ob').textContent = temPeca
+      ? 'margem de ' + pct((c.preco - c.real)/c.preco) + ' na venda direta' : '';
+
+    // barra + legenda + tabela do rateio
+    var barra = '', leg = '', tab = '';
+    c.itens.forEach(function(i, k){
+      var f = c.direto > 0 ? i.v/c.direto : 0;
+      barra += '<i style="width:' + (f*100) + '%;background:' + CORES[k] + '"></i>';
+      leg += '<span><i style="background:' + CORES[k] + '"></i>' + i.nome + ' ' + pct(f) + '</span>';
+      tab += '<tr><td>' + i.nome + '</td><td class="n">' + brl(i.v) +
+             '</td><td class="n">' + pct(f) + '</td></tr>';
+    });
+    tab += '<tr class="total"><td>Custo direto</td><td class="n">' + brl(c.direto) +
+           '</td><td class="n">100%</td></tr>';
+    tab += '<tr class="total"><td>Custo real <span style="font-weight:400;color:rgba(255,255,255,.55)">' +
+           '(com ' + pct(c.falha) + ' de falhas)</span></td><td class="n up">' + brl(c.real) +
+           '</td><td class="n"></td></tr>';
+    document.getElementById('r_barra').innerHTML = barra;
+    document.getElementById('r_leg').innerHTML = leg;
+    document.getElementById('r_tab').innerHTML = tab;
+
+    // canais
+    document.getElementById('c_preco').textContent = brl(c.preco);
+    var ct = '';
+    CANAIS.forEach(function(canal, k){
+      var t = canal.taxa/100;
+      var liq = c.preco*(1-t) - c.real;
+      var marg = c.preco > 0 ? liq/c.preco : 0;
+      ct += '<tr><td>' + canal.nome + '</td>' +
+        '<td class="n"><input type="number" step="1" min="0" max="90" data-canal="' + k +
+        '" value="' + canal.taxa + '"> %</td>' +
+        '<td class="n">' + brl(liq) + '</td>' +
+        '<td class="n ' + (marg < 0.35 ? 'baixo' : 'up') + '">' + pct(marg) + '</td>' +
+        '<td class="n">' + brl(c.real/((1-t)*0.5)) + '</td>' +
+        '<td class="n">' + brl(c.real/((1-t)*0.4)) + '</td></tr>';
+    });
+    document.getElementById('c_tab').innerHTML = ct;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-canal]'), function(inp){
+      inp.addEventListener('input', function(){
+        var v = parseFloat(inp.value);
+        CANAIS[+inp.dataset.canal].taxa = isFinite(v) ? v : 0;
+        render();
+      });
+    });
+
+    // testar um preço
+    var tp = num('t_preco'), tt = Math.min(90, Math.max(0, num('t_taxa')))/100;
+    var tliq = tp*(1-tt) - c.real;
+    var tmar = tp > 0 ? tliq/tp : 0;
+    document.getElementById('t_saida').innerHTML = !temPeca || tp <= 0
+      ? '<span style="color:var(--suave)">Preencha a peça e um preço.</span>'
+      : 'A ' + brl(tp) + ' com ' + (tt*100).toFixed(0) + '% de comissão, sobram <strong class="' +
+        (tliq <= 0 ? 'baixo' : 'up') + '">' + brl(tliq) + '</strong> por peça — margem de <strong class="' +
+        (tmar < 0.35 ? 'baixo' : 'up') + '">' + pct(tmar) + '</strong>.' +
+        (tliq > 0 ? ' Você paga a impressora em <strong>' + Math.ceil(num('p_maq')/tliq) +
+                    '</strong> peças (' + Math.ceil(num('p_maq')/tliq/c.nMesa) + ' mesas cheias).'
+                  : ' <strong class="baixo">Nesse preço você perde dinheiro.</strong>');
+
+    salvarTudo();
+  }
+
+  // ---------- lista de peças salvas ----------
+  function renderLista(){
+    var tb = document.getElementById('lista'), vazio = document.getElementById('vazio');
+    tb.innerHTML = '';
+    vazio.style.display = pecas.length ? 'none' : 'block';
+    pecas.forEach(function(p, i){
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td style="cursor:pointer">' + (p.q_nome || 'sem nome') + '</td>' +
+        '<td class="n">' + (+p.q_g).toFixed(1) + '</td>' +
+        '<td class="n">' + (p.q_t/Math.max(1,p.q_n)).toFixed(1) + '</td>' +
+        '<td class="n">' + brl(p.custo) + '</td>' +
+        '<td class="n up">' + brl(p.preco) + '</td>' +
+        '<td class="n">' + brl(p.preco - p.custo) + '</td>' +
+        '<td class="n"><button class="bt ghost mini" data-rm="' + i + '">remover</button></td>';
+      tr.querySelector('td').addEventListener('click', function(){
+        ['q_nome','q_g','q_t','q_n','q_setup','q_acab'].forEach(function(k){ el[k].value = p[k]; });
+        render();
+        window.scrollTo({top:0, behavior:'smooth'});
+      });
+      tr.querySelector('[data-rm]').addEventListener('click', function(){
+        pecas.splice(i,1); renderLista(); salvarTudo();
+      });
+      tb.appendChild(tr);
+    });
+  }
+
+  // ---------- eventos ----------
+  campos.forEach(function(k){
+    el[k].value = (estado[k] !== undefined && estado[k] !== '') ? estado[k] : PADRAO[k];
+    el[k].addEventListener('input', render);
+  });
+
+  document.getElementById('bt_salvar').addEventListener('click', function(){
+    if (!(num('q_g') > 0) && !(num('q_t') > 0)) return;
+    var c = calcular();
+    var p = {custo:c.real, preco:c.preco};
+    ['q_g','q_t','q_n','q_setup','q_acab'].forEach(function(k){ p[k] = num(k); });
+    p.q_nome = el.q_nome.value || 'Peça sem nome';
+    pecas.push(p); renderLista(); salvarTudo();
+  });
+  document.getElementById('bt_exemplo').addEventListener('click', function(){
+    Object.keys(EXEMPLO).forEach(function(k){ el[k].value = EXEMPLO[k]; });
+    render();
+  });
+  document.getElementById('bt_limpar').addEventListener('click', function(){
+    ['q_nome','q_g','q_t'].forEach(function(k){ el[k].value = ''; });
+    el.q_n.value = 1; el.q_setup.value = 5; el.q_acab.value = 2;
+    render();
+  });
+
+  renderLista();
+  render();
+})();
+</script>
+</body>
+</html>
