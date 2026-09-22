@@ -66,6 +66,20 @@ projeto. Copie para o pendrive ou envie pelo app. É a rota mais segura: nada é
 Antes de imprimir: chapa limpa com álcool isopropílico (base grande, PLA branco marca dedo),
 CFS com PLA branco no slot 1, e nivelamento automático da Hi ativo.
 
+## Já na impressora
+
+O G-code foi enviado à Creality Hi (`192.168.100.142`, hostname `Creality Hi-6701`) pela API
+Moonraker (porta 7125) — 11.965.245 bytes, íntegro. A impressão **não foi iniciada**: no momento
+do envio o CFS constava como desconectado e o sensor do caminho direto detectava um filamento.
+Confira que é o PLA branco e inicie pela tela da impressora ou pelo Fluidd (`:4408`).
+
+## Creality Hi no Bambu Studio
+
+Cinco presets de usuário instalados na pasta de usuário do Bambu Studio (`AppData\Roaming\BambuStudio\user`,
+pasta `default` e a da sua conta): impressora *Creality Hi 0.4 nozzle*, processos *0.20mm Standard* e
+*Tea Holder – PLA branco*, filamentos *Generic PLA* e *Hyper PLA*, todos `@Creality Hi 0.4 nozzle`.
+Reinicie o Bambu Studio. Detalhes e cópia dos arquivos em `Bambu-Studio-presets/`.
+
 ## Validação
 
 - Perfis lidos do próprio Creality Print 7.2 instalado (`resources/profiles/Creality`), com a
