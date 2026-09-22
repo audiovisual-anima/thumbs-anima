@@ -80,24 +80,26 @@ o Bambu Studio mostra o preset como modificado e você vê exatamente o que mudo
 
 ## Caixa para 6 porta-copos
 
-Caixa com tampa no formato do logo. Tudo deriva do contorno do porta-copos com 2 mm
-de deslocamento uniforme (0,5 de folga + 1,5 de parede), o que preserva o formato.
+Caixa com tampa no formato do logo. As medidas pedidas (94 × 102 × 33) são o **interior**:
+contorno do porta-copos deslocado 2,0 mm para fora (preserva o formato) e 33 mm livres de
+altura. A parede de 2,0 mm fica por fora.
 
 | | |
 |---|---|
-| Externo | **94,0 × 102,8 × 33,0 mm** (largura pedida; 102 não fecha — o porta-copos tem 98,84) |
-| Interno | 91,0 × 99,8 mm · 24,4 mm livres para os 6 (24,0) |
-| Parede / fundo | 1,5 / 1,6 mm |
+| Interno | **94,0 × 102,8 × 33,0 mm** (102 exato achataria o logo em 0,8%) |
+| Externo | 98,0 × 106,8 × 38,0 mm |
+| Cabem | 6 porta-copos (24,0) com 5 mm de sobra — ou 7 |
+| Parede / fundo | 2,0 / 2,0 mm |
 | Tampa | placa 3,0 + aba interna 4,0 (0,2 de folga), flush com a caixa |
 | Logo na tampa | branco embutido 0,8 mm, escalado ao contorno da tampa |
 | Acabamento | chanfro 0,6 no pé e no topo; V de 0,4 + 0,4 na junta; tampa impressa virada para a placa |
 
 Arquivos:
 
-- `Anima-Caixa-A1-base.3mf` — base verde, 1 cor. **Validada**: 30,8 g, 52 min.
+- `Anima-Caixa-A1-base.3mf` — base verde, 1 cor. **Validada**: 44,3 g, 70 min.
 - `Anima-Caixa-A1-tampa-2cores.3mf` — tampa com logo branco (filamento 2). Exige AMS.
-  Geometria validada com 1 filamento: 22,9 g, 41 min.
-- `Anima-Caixa-A1-completa-2cores.3mf` — base + tampa numa mesa. Exige AMS. 53,6 g, 1h24.
+  Geometria validada com 1 filamento: 24,9 g, 43 min.
+- `Anima-Caixa-A1-completa-2cores.3mf` — base + tampa numa mesa. Exige AMS. 69,1 g, 1h45.
 - STLs: `Anima-Caixa-1-base-verde`, `Anima-Caixa-2-tampa-verde`, `Anima-Caixa-3-tampa-logo-branco`.
 
 Encaixe: a aba tem 0,2 mm de folga radial — justo, como pedido. Se sair apertado
