@@ -1,0 +1,131 @@
+{
+    "type": "machine",
+    "name": "Creality Hi 0.4 nozzle",
+    "from": "User",
+    "inherits": "Creality K1 Max 0.4 nozzle",
+    "version": "2.0.0.0",
+    "updated_time": "1790098053",
+    "extruder_colour": [
+        "#018001"
+    ],
+    "gcode_flavor": "klipper",
+    "support_chamber_temp_control": "1",
+    "support_air_filtration": "0",
+    "machine_max_acceleration_e": [
+        "5000"
+    ],
+    "machine_max_acceleration_extruding": [
+        "12000"
+    ],
+    "machine_max_acceleration_retracting": [
+        "5000"
+    ],
+    "machine_max_acceleration_x": [
+        "12000"
+    ],
+    "machine_max_acceleration_y": [
+        "12000"
+    ],
+    "machine_max_acceleration_z": [
+        "500"
+    ],
+    "machine_max_speed_e": [
+        "50"
+    ],
+    "machine_max_speed_x": [
+        "300"
+    ],
+    "machine_max_speed_y": [
+        "300"
+    ],
+    "machine_max_speed_z": [
+        "20"
+    ],
+    "machine_max_jerk_e": [
+        "2.5"
+    ],
+    "machine_max_jerk_x": [
+        "12"
+    ],
+    "machine_max_jerk_y": [
+        "12"
+    ],
+    "machine_max_jerk_z": [
+        "2"
+    ],
+    "machine_min_extruding_rate": [
+        "0,0"
+    ],
+    "machine_min_travel_rate": [
+        "0,0"
+    ],
+    "max_layer_height": [
+        "0.32"
+    ],
+    "printable_height": "300",
+    "extruder_clearance_height_to_rod": "27",
+    "extruder_clearance_height_to_lid": "20",
+    "retraction_minimum_travel": [
+        "0.5"
+    ],
+    "retraction_length": [
+        "0.8"
+    ],
+    "retract_length_toolchange": [
+        "0"
+    ],
+    "z_hop": [
+        "0.4"
+    ],
+    "retraction_speed": [
+        "40"
+    ],
+    "change_filament_gcode": "G2 Z{z_after_toolchange + 0.4} I0.86 J0.86 P1 F10000 ; spiral lift a little from second lift\nG1 X260 Y180 F30000\nG1 Z{z_after_toolchange} F600",
+    "z_hop_types": "Auto Lift",
+    "before_layer_change_gcode": ";BEFORE_LAYER_CHANGE\n;[layer_z]\nG92 E0",
+    "machine_start_gcode": "M140 S0\nM104 S0 \nSTART_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single]\nT[initial_no_support_extruder]\nM104 S[nozzle_temperature_initial_layer]\nM204 S2000\nG1 Z3 F600\nM83\nG1 Y150 F12000\nG1 X0 F12000\nG1 Z0.2 F600\nG1 X0 Y150 F6000\nG1 E0.8 F300\nG1 X0 Y0 E9 F{filament_max_volumetric_speed[initial_extruder]/0.3*60}\nG1 X150 Y0 E9 F{filament_max_volumetric_speed[initial_extruder]/0.3*60}\nG92 E0\nG1 Z1 F600",
+    "machine_end_gcode": "G1 X0 Y180 F8000\nEND_PRINT",
+    "machine_max_acceleration_travel": [
+        "20000"
+    ],
+    "layer_change_gcode": ";AFTER_LAYER_CHANGE\n;[layer_z]",
+    "nozzle_type": [
+        "hardened_steel"
+    ],
+    "printer_structure": "corexy",
+    "best_object_pos": "0.5,0.5",
+    "machine_load_filament_time": "105",
+    "machine_unload_filament_time": "0",
+    "nozzle_volume": [
+        "183"
+    ],
+    "printable_area": [
+        "0x0",
+        "260x0",
+        "260x260",
+        "0x260"
+    ],
+    "time_lapse_gcode": "{if !spiral_mode && print_sequence != \"by object\" && layer_num != 0}\n;don't support timelapse gcode in spiral_mode and by object sequence for I3 structure printer\n;time lapse begin\nM5001 G92 E0\nM5001 G17\nM5001 G2 Z{layer_z + 0.4} I0.86 J0.86 P1 F20000 ; spiral lift a little\nM5001 G1 X0 Y180 F24000 ; move to safe pos\nM5001 P15\nM5001 M400 P300\nM5001 G92 E0\n;time lapse end\n{endif}",
+    "use_firmware_retraction": "0",
+    "use_relative_e_distances": "1",
+    "retract_lift_above": [
+        "0"
+    ],
+    "retract_lift_below": [
+        "299"
+    ],
+    "wipe_distance": [
+        "2"
+    ],
+    "printer_settings_id": "Creality Hi 0.4 nozzle",
+    "print_host": "http://192.168.100.142:7125/",
+    "print_host_webui": "http://192.168.100.142:4408/",
+    "default_print_profile": "0.20mm Standard @Creality Hi 0.4 nozzle",
+    "default_filament_profile": [
+        "Generic PLA @Creality Hi 0.4 nozzle"
+    ],
+    "nozzle_diameter": [
+        "0.4"
+    ],
+    "printer_variant": "0.4"
+}
