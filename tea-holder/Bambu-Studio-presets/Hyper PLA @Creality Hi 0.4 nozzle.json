@@ -1,0 +1,99 @@
+{
+    "type": "filament",
+    "name": "Hyper PLA @Creality Hi 0.4 nozzle",
+    "from": "User",
+    "inherits": "Generic PLA @Creality",
+    "version": "2.0.0.0",
+    "updated_time": "1790098053",
+    "eng_plate_temp": [
+        "45"
+    ],
+    "hot_plate_temp": [
+        "60"
+    ],
+    "textured_plate_temp": [
+        "60"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "45"
+    ],
+    "filament_flow_ratio": [
+        "0.97"
+    ],
+    "filament_cost": [
+        "30"
+    ],
+    "filament_max_volumetric_speed": [
+        "23"
+    ],
+    "filament_retract_before_wipe": [
+        "100"
+    ],
+    "filament_z_hop_types": [
+        "Slope Lift"
+    ],
+    "filament_vendor": [
+        "Creality"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "220"
+    ],
+    "fan_max_speed": [
+        "100"
+    ],
+    "fan_min_speed": [
+        "100"
+    ],
+    "slow_down_min_speed": [
+        "20"
+    ],
+    "nozzle_temperature": [
+        "220"
+    ],
+    "filament_adhesiveness_category": [
+        "100"
+    ],
+    "nozzle_temperature_range_high": [
+        "240"
+    ],
+    "additional_cooling_fan_speed": [
+        "0"
+    ],
+    "activate_air_filtration": [
+        "0"
+    ],
+    "complete_print_exhaust_fan_speed": [
+        "80"
+    ],
+    "default_filament_colour": [
+        "\"\""
+    ],
+    "during_print_exhaust_fan_speed": [
+        "60"
+    ],
+    "enable_overhang_bridge_fan": [
+        "1"
+    ],
+    "enable_pressure_advance": [
+        "0"
+    ],
+    "filament_notes": "\"\"",
+    "filament_shrink": [
+        "100%"
+    ],
+    "pressure_advance": [
+        "0.04"
+    ],
+    "required_nozzle_HRC": [
+        "0"
+    ],
+    "compatible_printers": [
+        "Creality Hi 0.4 nozzle"
+    ],
+    "filament_settings_id": [
+        "Hyper PLA @Creality Hi 0.4 nozzle"
+    ],
+    "filament_colour": [
+        "#FFFFFF"
+    ]
+}
