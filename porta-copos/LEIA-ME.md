@@ -90,17 +90,21 @@ altura. A parede de 2,0 mm fica por fora.
 | Externo | 98,0 × 106,8 × 38,0 mm |
 | Cabem | 6 porta-copos (24,0) com 5 mm de sobra — ou 7 |
 | Parede / fundo | 2,0 / 2,0 mm |
+| Fenda | 20 mm na lateral direita, do topo do fundo à borda, cantos r = 4 — para tirar os porta-copos um a um |
 | Tampa | placa 3,0 + aba interna 4,0 (0,2 de folga), flush com a caixa |
 | Logo na tampa | branco embutido 0,8 mm, escalado ao contorno da tampa |
 | Acabamento | chanfro 0,6 no pé e no topo; V de 0,4 + 0,4 na junta; tampa impressa virada para a placa |
 
 Arquivos:
 
-- `Anima-Caixa-A1-base.3mf` — base verde, 1 cor. **Validada**: 44,3 g, 70 min.
+- `Anima-Caixa-A1-base.3mf` — base verde, 1 cor. **Validada**: 42,7 g, 69 min.
 - `Anima-Caixa-A1-tampa-2cores.3mf` — tampa com logo branco (filamento 2). Exige AMS.
   Geometria validada com 1 filamento: 24,9 g, 43 min.
-- `Anima-Caixa-A1-completa-2cores.3mf` — base + tampa numa mesa. Exige AMS. 69,1 g, 1h45.
+- `Anima-Caixa-A1-completa-2cores.3mf` — base + tampa numa mesa. Exige AMS. 67,5 g, 1h44.
 - STLs: `Anima-Caixa-1-base-verde`, `Anima-Caixa-2-tampa-verde`, `Anima-Caixa-3-tampa-logo-branco`.
+
+A fenda não atravessa o fundo (a pilha não escapa) e a aba da tampa continua um anel
+inteiro: com a caixa fechada, ela faz de contraparede atrás da fenda.
 
 Encaixe: a aba tem 0,2 mm de folga radial — justo, como pedido. Se sair apertado
 demais na sua impressora, o ajuste é escalar só a **tampa** em 99,5% no XY.
