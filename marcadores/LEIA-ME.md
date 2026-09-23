@@ -61,5 +61,5 @@ lite. Fatie e envie. Se o Bambu perguntar sobre o preset modificado, mantenha o 
 Perfis reais do Bambu Studio 2.8 instalado. O projeto foi **fatiado pela linha de comando do
 Bambu Studio** num gêmeo de um filamento (a CLI não fatia 2 filamentos na A1 — limitação dela,
 não do arquivo): 2 objetos de 40,0 × 190,0 × 2,0 mm, apoiados em z = 0, 10 camadas, 109 min,
-29,8 g, todos os ajustes conferidos no bloco de configuração do G-code. A troca de cor em si
+29,6 g, todos os ajustes conferidos no bloco de configuração do G-code. A troca de cor em si
 fica para você conferir no preview antes de imprimir.
