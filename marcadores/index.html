@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marcadores Anima — impressão 3D</title>
+<style>
+:root{--verde:#00A859;--tinta:#0d0d0f;--linha:rgba(255,255,255,.12);--suave:rgba(255,255,255,.62)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--tinta);color:#fff;font:400 16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{padding:64px 0 40px;border-bottom:1px solid var(--linha)}
+.tag{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--verde);border:1px solid rgba(0,168,89,.45);border-radius:99px;padding:6px 14px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.1;margin:20px 0 10px;font-weight:700;letter-spacing:-.02em}
+.sub{color:var(--suave);max-width:70ch;font-size:17px}
+h2{font-size:clamp(22px,3.2vw,30px);margin:56px 0 6px;letter-spacing:-.01em}
+h3{font-size:17px;margin:0 0 8px}
+.kicker{color:var(--verde);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+p{color:rgba(255,255,255,.80)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin:28px 0}
+.card{background:#151519;border:1px solid var(--linha);border-radius:14px;padding:22px}
+.card.destaque{border-color:rgba(0,168,89,.45)}
+figure{margin:28px 0}
+figure img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--linha);background:#fff}
+figcaption{color:var(--suave);font-size:13px;margin-top:10px;text-align:center}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--linha);vertical-align:top}
+th{color:var(--suave);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.up{color:var(--verde);font-weight:600}
+.dl{display:inline-flex;align-items:center;gap:8px;background:var(--verde);color:#fff;text-decoration:none;font-weight:700;padding:11px 20px;border-radius:99px;margin:6px 10px 6px 0;font-size:14px}
+.dl.ghost{background:transparent;color:var(--verde);border:1px solid rgba(0,168,89,.45)}
+.aviso{background:rgba(0,168,89,.07);border:1px solid rgba(0,168,89,.3);border-radius:12px;padding:20px;margin:26px 0}
+.aviso strong{color:var(--verde)}
+ul{padding-left:18px;color:rgba(255,255,255,.80)} li{margin:7px 0}
+.painel{overflow-x:auto}
+footer{margin:70px 0 50px;padding-top:26px;border-top:1px solid var(--linha);color:rgba(255,255,255,.45);font-size:13.5px}
+footer a{color:var(--verde)}
+@media(max-width:640px){header{padding:40px 0 28px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="tag">Anima Podcast · impressão 3D</span>
+  <h1>Marcadores de livro</h1>
+  <p class="sub">Dois marcadores de encaixe com o logo Anima — um com as barras, outro com a palavra
+  "anima" — em <strong>40 × 190 × 2 mm</strong>, corpo branco e balão verde embutido com superfície lisa.
+  Projeto para <strong>Bambu Lab A1 com AMS lite</strong>, os dois numa mesa.</p>
+</header>
+
+<div class="grid2">
+  <figure style="margin:0">
+    <img src="previa-marcadores.png" alt="Os dois marcadores vistos pela face do logo: corpo branco, balão verde com as barras e a palavra anima em branco">
+    <figcaption>Face do logo, como sai da placa.</figcaption>
+  </figure>
+  <figure style="margin:0">
+    <img src="previa-bambu.png" alt="Render da mesa pelo Bambu Studio com os dois marcadores">
+    <figcaption>Mesa renderizada pelo próprio Bambu Studio (gêmeo de uma cor).</figcaption>
+  </figure>
+</div>
+
+<table>
+  <tr><th>Medidas</th><td class="n up">40,0 × 190,0 × 2,0 mm cada</td></tr>
+  <tr><th>Cores</th><td class="n">corpo branco · balão verde #00A859 embutido 0,6 mm · barras/letras brancas (vazios no verde)</td></tr>
+  <tr><th>Filamentos</th><td class="n">1 = branco · 2 = verde — Generic PLA @BBL A1 · 220 °C / mesa 65 °C</td></tr>
+  <tr><th>Orientação</th><td class="n">face do logo na placa PEI texturizada — lisa, sem linhas</td></tr>
+  <tr><th>Tempo · material</th><td class="n">109 min · 29,6 g para os dois (sem a purga)</td></tr>
+</table>
+
+<h2>Arquivos</h2>
+<div class="grid2">
+  <div class="card destaque">
+    <p class="kicker">Recomendado · AMS lite</p>
+    <h3>Projeto do Bambu Studio</h3>
+    <p>Os dois marcadores na mesa, filamentos, processo de qualidade e torre de purga já definidos.
+    Abra, mapeie branco e verde nos slots do AMS, fatie e envie.</p>
+    <a class="dl" href="Marcadores-Anima-A1-2cores.3mf">Baixar .3mf</a>
+  </div>
+  <div class="card">
+    <p class="kicker">Outros fatiadores</p>
+    <h3>STLs</h3>
+    <p>Corpo e balão de cada marcador, já alinhados entre si.</p>
+    <a class="dl ghost" href="Marcador1-1-corpo-branco.stl">M1 corpo</a>
+    <a class="dl ghost" href="Marcador1-2-balao-verde.stl">M1 balão</a>
+    <a class="dl ghost" href="Marcador2-1-corpo-branco.stl">M2 corpo</a>
+    <a class="dl ghost" href="Marcador2-2-balao-verde.stl">M2 balão</a>
+    <a class="dl ghost" href="LEIA-ME.md">Leia-me</a>
+  </div>
+</div>
+
+<figure>
+  <img src="previa-mesa.png" alt="Mapa da mesa da A1 com os dois marcadores virados para a placa e a torre de purga à direita">
+  <figcaption>Mapa da mesa: peças viradas (vistas através da placa) e torre de purga de 35 mm à direita.</figcaption>
+</figure>
+
+<h2>Decisões de layout</h2>
+<ul>
+  <li><strong>40 mm de largura com logo proporcional:</strong> balão reduzido a 0,8× (40,0 × 43,9 mm) sem distorção; o corpo do clipe manteve os 37,8 mm de largura originais e ganhou 8,3 mm de trecho reto para fechar 190 mm. Sobreposição balão/corpo mantida proporcional.</li>
+  <li><strong>Canal do clipe de 2,6 mm</strong> atravessando a peça — moldura + língua central, como no marcador de referência. A pedido, o recorte começa <strong>2 mm abaixo da ponta do balão</strong> (pernas do canal estendidas 9,5 mm; ponte sólida de 14,2 mm até o topo, escondida atrás do balão).</li>
+  <li><strong>Letras do Marcador 2</strong> engrossadas 0,2 mm (traços de ~0,75 passam a ~1,1 mm), invisível a olho e seguro no bico 0,4.</li>
+  <li>Barras e letras brancas iguais ao corpo <strong>não são peças</strong>: são vazios no verde por onde o corpo aparece. Duas cores bastam.</li>
+</ul>
+
+<h2>Ajustes de qualidade sobre o 0.20mm Standard @BBL A1</h2>
+<div class="painel">
+<table>
+  <tr><th>Ajuste</th><th>Valor</th><th>Por quê</th></tr>
+  <tr><td>Gerador de paredes</td><td class="n up">Arachne</td><td>resolve os traços de 1,1 mm sem gap fill</td></tr>
+  <tr><td>Largura da parede externa</td><td class="n up">0,38 mm</td><td>contorno das cores mais fiel</td></tr>
+  <tr><td>Largura da 1ª camada</td><td class="n up">0,42 mm</td><td>a 1ª camada é a face do logo — linha fina preserva o detalhe</td></tr>
+  <tr><td>Velocidade da 1ª camada</td><td class="n up">30 mm/s</td><td>fronteiras de cor limpas</td></tr>
+  <tr><td>Pé de elefante</td><td class="n up">0,10 mm</td><td>menos esmagamento, as cores não "vazam"</td></tr>
+  <tr><td>Ironing</td><td class="n up">topo</td><td>o verso do marcador sai liso também</td></tr>
+  <tr><td>Paredes · fundo/topo</td><td class="n up">3 · 4/5</td><td>peça de 10 camadas sai sólida e firme</td></tr>
+  <tr><td>Torre de purga</td><td class="n up">35 mm em (208, 110)</td><td>fora das peças, 15 mm de folga, só 3 camadas de altura</td></tr>
+</table>
+</div>
+
+<div class="aviso">
+  <strong>Validação.</strong> Perfis reais do Bambu Studio 2.8 instalado. O projeto foi fatiado pela linha de
+  comando do Bambu num gêmeo de um filamento (a CLI não fatia 2 filamentos na A1 — limitação dela, não do
+  arquivo): 2 objetos de 40,0 × 190,0 × 2,0 mm apoiados em z = 0, 10 camadas, 109 min, 29,8 g, todos os
+  ajustes conferidos no bloco de configuração do G-code. A troca de cor em si fica para o preview do Bambu Studio.
+</div>
+
+<footer>
+  Anima Podcast · <a href="../porta-copos/">porta-copos e caixa</a> · <a href="../tea-holder/">tea holder</a> · <a href="../calculadora/">calculadora de preço</a>
+</footer>
+
+</div>
+</body>
+</html>
