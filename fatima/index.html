@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fátima 1917 — Recriações</title>
+<style>
+  :root{
+    --bg:#111418; --card:#1a1f26; --ink:#e8e6e0; --mut:#9aa3ad;
+    --acc:#d4a24e; --ok:#4ec97a; --wait:#e0b84e; --line:#2a313a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,'Times New Roman',serif;padding:0 16px 64px}
+  header{max-width:1200px;margin:0 auto;padding:48px 0 8px}
+  h1{font-size:clamp(26px,4vw,40px);font-weight:400;letter-spacing:.5px}
+  h1 em{color:var(--acc);font-style:normal}
+  .sub{color:var(--mut);margin:10px 0 4px;max-width:70ch}
+  .specs{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 8px}
+  .chip{border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:13px;color:var(--mut);font-family:system-ui,sans-serif}
+  .chip b{color:var(--ink);font-weight:600}
+  main{max-width:1200px;margin:0 auto}
+  section.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:28px 0;overflow:hidden}
+  .card img{width:100%;display:block}
+  .body{padding:20px 22px 24px}
+  .head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  h2{font-size:20px;font-weight:600}
+  .badge{font:600 12px system-ui,sans-serif;border-radius:999px;padding:3px 12px}
+  .badge.ok{background:rgba(78,201,122,.12);color:var(--ok);border:1px solid rgba(78,201,122,.35)}
+  .badge.wait{background:rgba(224,184,78,.1);color:var(--wait);border:1px solid rgba(224,184,78,.35)}
+  .refs{color:var(--mut);font-size:14px;margin:6px 0 14px}
+  .dl{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px}
+  .dl a{font:600 13px system-ui,sans-serif;color:var(--bg);background:var(--acc);text-decoration:none;border-radius:8px;padding:8px 16px}
+  .dl a.sec{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+  details{border-top:1px solid var(--line);padding-top:14px}
+  summary{cursor:pointer;font:600 14px system-ui,sans-serif;color:var(--mut)}
+  summary:hover{color:var(--ink)}
+  pre{white-space:pre-wrap;background:#0d1013;border:1px solid var(--line);border-radius:10px;
+      padding:16px;margin:12px 0 4px;font:13px/1.55 Consolas,monospace;color:#c9d4de}
+  button.copy{font:600 12px system-ui,sans-serif;background:transparent;color:var(--acc);
+      border:1px solid var(--acc);border-radius:7px;padding:6px 14px;cursor:pointer;margin-top:8px}
+  button.copy:hover{background:var(--acc);color:var(--bg)}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  @media(max-width:720px){.pair{grid-template-columns:1fr}}
+  .pair figure{margin:0;position:relative}
+  .pair figcaption{position:absolute;left:10px;bottom:10px;font:600 11px system-ui,sans-serif;
+      background:rgba(0,0,0,.55);border-radius:6px;padding:3px 10px;color:#fff}
+  footer{max-width:1200px;margin:48px auto 0;color:var(--mut);font-size:13px;border-top:1px solid var(--line);padding-top:18px;font-family:system-ui,sans-serif}
+</style>
+</head>
+<body>
+<header>
+  <h1>Fátima, 13 de outubro de 1917 — <em>recriações fotográficas</em></h1>
+  <p class="sub">Reconstituições ultrarrealistas das fotografias históricas do Milagre do Sol (Cova da Iria),
+  geradas no Grok Imagine (Qualidade 2.0, proporção 5:2) e finalizadas com tratamento digital:
+  ampliação Lanczos, micro-contraste HDR, nitidez seletiva e grão fotográfico fino.</p>
+  <div class="specs">
+    <span class="chip">Formato final <b>2688 × 1080 px</b> (verificado)</span>
+    <span class="chip">Masters em <b>cor</b> + versões <b>P&amp;B de arquivo</b></span>
+    <span class="chip">JPG q96 4:4:4 · PNG sem perdas</span>
+  </div>
+</header>
+<main>
+
+<section class="card">
+  <div class="pair">
+    <figure><img src="cena1-trio.jpg" alt="Trio ajoelhado, cor" loading="lazy"><figcaption>COR</figcaption></figure>
+    <figure><img src="cena1-trio-pb.jpg" alt="Trio ajoelhado, P&B" loading="lazy"><figcaption>P&amp;B</figcaption></figure>
+  </div>
+  <div class="body">
+    <div class="head"><h2>Cena 1 — O trio ajoelhado</h2><span class="badge ok">ENTREGUE</span></div>
+    <p class="refs">Referências 1 e 6 (foto P&amp;B clássica): mulher de lenço com terço e guarda-chuva, homem de terno com chapéu na mão, rapaz com cajado.</p>
+    <div class="dl">
+      <a href="cena1-trio.jpg" download>JPG cor</a>
+      <a href="cena1-trio.png" download>PNG cor</a>
+      <a href="cena1-trio-pb.jpg" download>JPG P&amp;B</a>
+      <a href="cena1-trio-alt.jpg" download class="sec">Variação B (cor)</a>
+      <a href="cena1-trio-alt-pb.jpg" download class="sec">Variação B (P&amp;B)</a>
+    </div>
+    <details><summary>Prompt (Grok Imagine · 5:2 · Qualidade 2.0)</summary>
+<pre id="p1">Ultra-realistic documentary photograph, October 13, 1917, Cova da Iria, Fátima, Portugal, during the Miracle of the Sun. Panoramic wide cinematic frame. Three Portuguese peasants kneel on rocky limestone ground, all gazing up in awe at the same single point high in the sky: on the left, a middle-aged woman wearing a white cotton headscarf and a heavy dark fringed wool shawl with woven orange and red stripes over a long pale pleated skirt, hands clasped in prayer holding a wooden rosary and a closed black umbrella against her chest; in the center, a young man around 30 with short dark beard and mustache, wearing a dark wool three-piece suit with waistcoat, white collarless shirt and silver pocket-watch chain, holding his dark felt hat on his raised knee; on the right, a teenage boy in a worn grey wool jacket, kneeling, gripping a tall rustic wooden staff vertically with both hands, lips parted in wonder. Behind and beside them, a dense crowd of hundreds of rural villagers in dark 1910s clothing and white headscarves stretches across the entire wide frame to a horizon of low holm-oak shrubs, softly out of focus. Overcast silver daylight after rain, diffuse soft shadows, damp rocky soil with scattered stones, wet wool fiber texture, weathered sun-tanned skin with visible pores and fine lines, authentic period faces, natural muted earth-tone colors, HDR dynamic range, shot on a large-format press camera with 90mm lens at f/5.6, tack-sharp foreground subjects, gentle background falloff, very subtle photographic grain, museum-grade restored archival photograph quality, no modern objects, no text.</pre>
+      <button class="copy" data-t="p1">Copiar prompt</button>
+    </details>
+  </div>
+</section>
+
+<section class="card">
+  <div class="pair">
+    <figure><img src="cena2-grupo.jpg" alt="Grupo amplo, cor" loading="lazy"><figcaption>COR</figcaption></figure>
+    <figure><img src="cena2-grupo-pb.jpg" alt="Grupo amplo, P&B" loading="lazy"><figcaption>P&amp;B</figcaption></figure>
+  </div>
+  <div class="body">
+    <div class="head"><h2>Cena 2 — O grupo amplo</h2><span class="badge ok">ENTREGUE</span></div>
+    <p class="refs">Referências 2 (colorizada) e 8 (original P&amp;B): jovem cabisbaixo com boina à esquerda, senhora de xale vinho, trio central, mulheres descalças de xale e homem de suéter azul à direita.</p>
+    <div class="dl">
+      <a href="cena2-grupo.jpg" download>JPG cor</a>
+      <a href="cena2-grupo.png" download>PNG cor</a>
+      <a href="cena2-grupo-pb.jpg" download>JPG P&amp;B</a>
+    </div>
+    <details><summary>Prompt (Grok Imagine · 5:2 · Qualidade 2.0)</summary>
+<pre id="p2">Ultra-realistic documentary photograph, October 13, 1917, Cova da Iria, Fátima, Portugal, Miracle of the Sun. Very wide panoramic frame of a group of Portuguese peasants on rocky muddy terrain, almost everyone gazing up at the same single point high in the sky. Far left: a young man standing in a dark wool suit, head bowed down looking at the ground, holding a dark beret in his hand. Left: an older woman kneeling, wrapped in a dark red fringed shawl, white headscarf, smiling faintly toward the sky. Center: a kneeling woman with white headscarf and dark fringed shawl with orange woven stripes clasping a rosary and a closed umbrella, a kneeling bearded man in dark three-piece wool suit holding his felt hat over his knee, and a kneeling teenage boy gripping a tall wooden staff, all looking up. Right: two barefoot standing women seen from behind at three-quarter angle, one in a burgundy fringed shawl and long polka-dot skirt, the other in a patterned shawl and striped apron, both looking up; beside them a tall man in a dark blue knit sweater gazes upward. Behind them all, an immense dense crowd of thousands of rural villagers in dark 1910s clothing with scattered white headscarves recedes to a hazy horizon of low shrubs under a vast pale overcast sky. Diffuse silver daylight after rain, muted earthy autochrome-like color palette, damp stones and mud, coarse wool and linen textures, weathered realistic skin with pores, authentic early-20th-century rural faces, HDR tonal depth, large-format press camera look, 65mm lens, deep focus, subtle fine film grain, museum-grade archival photograph restored to pristine quality, no modern objects, no text.</pre>
+      <button class="copy" data-t="p2">Copiar prompt</button>
+    </details>
+  </div>
+</section>
+
+<section class="card">
+  <div class="body">
+    <div class="head"><h2>Cena 3 — Os dois homens (mão na testa)</h2><span class="badge wait">AGUARDANDO COTA DO GROK</span></div>
+    <p class="refs">Referência 3 (close): dois homens protegendo os olhos com a mão, olhando o sol; mulher sorrindo atrás. Prompt pronto — colar no Grok Imagine com proporção 5:2 e Qualidade 2.0.</p>
+    <details open><summary>Prompt pronto</summary>
+<pre id="p3">Ultra-realistic documentary photograph, October 13, 1917, Cova da Iria, Fátima, Portugal, Miracle of the Sun. Wide panoramic close-up at eye level of two Portuguese peasant men in a dense crowd, both shielding their eyes with a raised flat hand against the forehead while staring straight up at a blinding point high in the sky, faces lit by a strange cold light. Left: a lean young man in his twenties, short dark hair, worn dark wool jacket over a collarless white shirt, squinting upward, mouth slightly open in astonishment. Right: an older rugged man with thick dark beard and mustache, deep weathered wrinkles, heavy dark overcoat with wide lapels, hand flat above his brow, expression of fearful awe. Between and behind them, partially visible villagers: a smiling young woman with a headscarf and other men in caps and hats also looking up, slightly out of focus. Dense crowd fading into pale overcast sky across the wide frame. Diffuse silver daylight, authentic early-20th-century rural Portuguese faces, weathered sun-tanned skin with visible pores, stubble, chapped lips, coarse wool fiber texture, HDR tonal depth, shot on large-format press camera, 150mm lens at f/4, shallow depth of field, tack-sharp on both faces, subtle fine photographic grain, muted natural color palette, museum-grade archival photograph restored to pristine quality, no modern objects, no text.</pre>
+      <button class="copy" data-t="p3">Copiar prompt</button>
+    </details>
+  </div>
+</section>
+
+<section class="card">
+  <div class="body">
+    <div class="head"><h2>Cena 4 — A multidão (plano geral)</h2><span class="badge wait">AGUARDANDO COTA DO GROK</span></div>
+    <p class="refs">Referências 4 e 7: mar de milhares de peregrinos visto do alto, até a linha de árvores no horizonte.</p>
+    <details open><summary>Prompt pronto</summary>
+<pre id="p4">Ultra-realistic documentary photograph, October 13, 1917, Cova da Iria, Fátima, Portugal, Miracle of the Sun. Very wide panoramic view from a slightly elevated position overlooking an immense sea of roughly seventy thousand pilgrims densely covering a barren rolling hillside, stretching from the immediate foreground to a distant horizon line of low holm-oak trees and shrubs. Nearly everyone wears dark heavy 1910s rural clothing — black capes, wool suits, flat caps and wide-brimmed hats — with scattered white headscarves of peasant women punctuating the dark mass like specks of light. In the near foreground, the backs and shoulders of men in hats and women in shawls, some tilting their heads up toward the sky, one man raising a hand to shield his eyes. The crowd dissolves into a granular texture of thousands of tiny heads toward the horizon. Vast pale overcast sky occupying the upper third, bright diffuse light breaking through thinning clouds. Damp autumn air, muted earthy tones, HDR tonal depth, large-format press camera on a tripod, 135mm lens at f/11, deep focus, subtle fine film grain, museum-grade archival photograph restored to pristine quality, no modern objects, no text.</pre>
+      <button class="copy" data-t="p4">Copiar prompt</button>
+    </details>
+  </div>
+</section>
+
+<section class="card">
+  <div class="body">
+    <div class="head"><h2>Cena 5 — A fileira em pé (tom sépia)</h2><span class="badge wait">AGUARDANDO COTA DO GROK</span></div>
+    <p class="refs">Referência 5: grupo em pé — homem com bengala e mão na testa, três mulheres de xales pesados (uma sorrindo), homem de perfil olhando ao alto.</p>
+    <details open><summary>Prompt pronto</summary>
+<pre id="p5">Ultra-realistic documentary photograph, October 13, 1917, Cova da Iria, Fátima, Portugal, Miracle of the Sun. Wide panoramic frame of a standing row of Portuguese peasants on trampled muddy ground, photographed at eye level, most gazing up at a single point high in the sky. Far left: a young man leaning on a tall walking stick, other hand raised flat above his brow shielding his eyes, dark worn suit and muddy leather boots. Center-left: an elderly woman engulfed in a heavy dark hooded wool cape looking upward. Center: two middle-aged women side by side in thick fringed shawls and white headscarves, one with hands joined, the other smiling gently with weathered kind eyes, a wicker basket and a small clay water jug on the ground at her feet. Right: a tall thin man in a dark suit standing in sharp profile, chin lifted high, gazing straight up. Behind them, a dense out-of-focus crowd of villagers in dark clothing stretches across the whole frame under a pale washed-out sky. Diffuse silver daylight, warm sepia-leaning muted color palette, coarse wool and linen textures, weathered realistic skin with pores and deep lines, authentic early-20th-century rural faces, HDR tonal depth, large-format press camera, 100mm lens at f/8, sharp across the row, subtle fine film grain, museum-grade archival photograph restored to pristine quality, no modern objects, no text.</pre>
+      <button class="copy" data-t="p5">Copiar prompt</button>
+    </details>
+  </div>
+</section>
+
+</main>
+<footer>
+  Pipeline: Grok Imagine (Qualidade 2.0 · 5:2 · 1440×576) → Lanczos ×1,875 → micro-contraste HDR → máscara de nitidez → grão fotográfico fino → corte central → <b>2688×1080</b> (dimensões verificadas em todos os arquivos). As versões P&amp;B usam mistura de canais pancromática com curva de arquivo.
+</footer>
+<script>
+document.querySelectorAll('button.copy').forEach(b=>{
+  b.addEventListener('click',()=>{
+    navigator.clipboard.writeText(document.getElementById(b.dataset.t).textContent).then(()=>{
+      const o=b.textContent;b.textContent='Copiado ✓';setTimeout(()=>b.textContent=o,1500);
+    });
+  });
+});
+</script>
+</body>
+</html>
